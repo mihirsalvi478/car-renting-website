@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { User } from "../models/user.model";
-// import { User } from "../models/user.model";
+import prisma from "../db/db";
 
 export const signup = async (req: Request, res: Response) => {
   const { email, password, name } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ email, password: hashedPassword, name });
-    await user.save();
+    await prisma.user.create({
+      data: { email, password: hashedPassword, name },
+    });
 
     res.status(201).json({ message: "User created successfully" });
   } catch (error) {
@@ -20,17 +20,17 @@ export const signup = async (req: Request, res: Response) => {
 export const signin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ email });
-    if (!user) { 
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
       res.status(404).json({ error: "User not found" });
       return;
-}
+    }
     const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid){
-       res.status(401).json({ error: "Invalid credentials" });
-       return;
-      }
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET!, {
+    if (!isPasswordValid) {
+      res.status(401).json({ error: "Invalid credentials" });
+      return;
+    }
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET!, {
       expiresIn: "1h",
     });
     res.status(200).json({ token });
