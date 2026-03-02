@@ -22,6 +22,11 @@ const carsData = [
   { name: "Range Rover Autobiography", type: CarType.luxury, price: 160000, description: "A luxurious and powerful SUV.", availability: true, image: "image13.jpeg" },
   { name: "Bentley Continental GT", type: CarType.luxury, price: 210000, description: "A grand tourer with elegance and power.", availability: true, image: "image14.jpeg" },
   { name: "Chevrolet Spark", type: CarType.economy, price: 16000, description: "A compact and affordable city car.", availability: true, image: "image15.jpeg" },
+  { name: "Nissan Altima", type: CarType.economy, price: 24000, description: "A comfortable midsize sedan with smooth ride.", availability: true, image: "image16.jpeg" },
+  { name: "Kia Seltos", type: CarType.economy, price: 18000, description: "A feature-rich compact SUV for daily commutes.", availability: true, image: "image17.jpeg" },
+  { name: "Volkswagen Jetta", type: CarType.premium, price: 42000, description: "German engineering with refined interiors.", availability: true, image: "image18.jpeg" },
+  { name: "Maserati Quattroporte", type: CarType.luxury, price: 180000, description: "Italian luxury sedan with a roaring V8 engine.", availability: true, image: "image19.jpeg" },
+  { name: "Aston Martin DB11", type: CarType.luxury, price: 220000, description: "A British grand tourer with timeless elegance.", availability: true, image: "image20.jpeg" },
 ];
 
 const packagesData = [
@@ -40,6 +45,11 @@ const packagesData = [
   { name: "Punjab Cultural Journey", price: 26000, destinations: ["Amritsar", "Ludhiana", "Patiala"], couponCode: "PUNJAB15", availability: true, image: "p13.jpeg" },
   { name: "Meghalaya Rainforest Experience", price: 42000, destinations: ["Shillong", "Cherrapunji", "Mawsynram"], couponCode: "MEGHALAYA10", availability: true, image: "p14.jpeg" },
   { name: "Madhya Pradesh Wildlife Safari", price: 55000, destinations: ["Kanha", "Bandhavgarh", "Pench"], couponCode: "WILDLIFE25", availability: true, image: "p15.jpeg" },
+  { name: "Kashmir Paradise Tour", price: 48000, destinations: ["Srinagar", "Gulmarg", "Pahalgam", "Sonamarg"], couponCode: "KASHMIR20", availability: true, image: "p16.jpeg" },
+  { name: "Odisha Heritage Circuit", price: 28000, destinations: ["Bhubaneswar", "Puri", "Konark"], couponCode: "ODISHA15", availability: true, image: "p17.jpeg" },
+  { name: "Gujarat Rann of Kutch Festival", price: 33000, destinations: ["Ahmedabad", "Kutch", "Dwarka", "Somnath"], couponCode: "GUJARAT10", availability: true, image: "p18.jpeg" },
+  { name: "Ladakh Bike Expedition", price: 65000, destinations: ["Leh", "Nubra Valley", "Pangong Lake", "Khardung La"], couponCode: "LADAKH30", availability: true, image: "p19.jpeg" },
+  { name: "Coorg Coffee Plantation Stay", price: 20000, destinations: ["Coorg", "Madikeri", "Abbey Falls"], couponCode: "COORG10", availability: true, image: "p20.jpeg" },
 ];
 
 async function main() {
