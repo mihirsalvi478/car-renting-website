@@ -5,14 +5,14 @@ import { FaCar, FaCalendarAlt, FaMoneyBillWave, FaCheckCircle, FaExclamationCirc
 import { BACKEND_URL } from '../lib/config';
 
 interface Booking {
-  _id: string;
+  id: string;
   userId: {
-    _id: string;
+    id: string;
     name: string;
     email: string;
   };
   carId: {
-    _id: string;
+    id: string;
     name: string;
     model: string;
     price: number;
@@ -24,7 +24,7 @@ interface Booking {
 }
 
 interface Car {
-  _id: string;
+  id: string;
   name: string;
   model: string;
   price: number;
@@ -47,12 +47,12 @@ export default function BookingPage() {
     if (user) {
       try {
         const userData = JSON.parse(user);
-        setUserId(userData._id);
+        setUserId(userData.id);
       } catch (e) {
         console.error('Error parsing user data:', e);
       }
     }
-    
+
     fetchBookings();
     fetchCars();
   }, []);
@@ -64,7 +64,7 @@ export default function BookingPage() {
         setError('Please login to view bookings');
         return;
       }
-      
+
       const response = await axios.get(`${BACKEND_URL}/bookings`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -103,7 +103,7 @@ export default function BookingPage() {
         setError('Please login to create a booking');
         return;
       }
-      
+
       const response = await axios.post(
         `${BACKEND_URL}/bookings`,
         {
@@ -120,7 +120,7 @@ export default function BookingPage() {
       setSuccess('Booking created successfully!');
       setError('');
       fetchBookings();
-      
+
       // Reset form
       setSelectedCar('');
       setStartDate('');
@@ -133,9 +133,9 @@ export default function BookingPage() {
 
   const calculateTotalPrice = () => {
     if (!selectedCar || !startDate || !endDate) return 0;
-    const car = cars.find(c => c._id === selectedCar);
+    const car = cars.find(c => c.id === selectedCar);
     if (!car) return 0;
-    
+
     const days = Math.ceil((new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24));
     return car.price * days;
   };
@@ -150,7 +150,7 @@ export default function BookingPage() {
           {error}
         </div>
       )}
-      
+
       {success && (
         <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 flex items-center">
           <FaCheckCircle className="mr-2" />
@@ -172,7 +172,7 @@ export default function BookingPage() {
               >
                 <option value="">Choose a car</option>
                 {cars.map((car) => (
-                  <option key={car._id} value={car._id}>
+                  <option key={car.id} value={car.id}>
                     {car.name} - {car.model} (${car.price}/day)
                   </option>
                 ))}
@@ -229,43 +229,42 @@ export default function BookingPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {bookings.map((booking) => (
-            <div key={booking._id} className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div key={booking.id} className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="p-6">
                 <div className="flex items-center mb-4">
                   <FaCar className="text-blue-600 text-2xl mr-2" />
                   <h3 className="text-xl font-semibold text-gray-800">{booking.carId.name}</h3>
                 </div>
-                
+
                 <p className="text-gray-600 mb-2">Model: {booking.carId.model}</p>
-                
+
                 <div className="flex items-center mb-2">
                   <FaCalendarAlt className="text-gray-500 mr-2" />
                   <p className="text-gray-600">
                     {new Date(booking.startDate).toLocaleDateString()} - {new Date(booking.endDate).toLocaleDateString()}
                   </p>
                 </div>
-                
+
                 <div className="flex items-center mb-2">
                   <FaMoneyBillWave className="text-green-600 mr-2" />
                   <p className="text-gray-600">Total Price: ${booking.totalPrice}</p>
                 </div>
-                
+
                 <div className="mt-4">
-                  <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
-                    booking.status === 'confirmed' 
-                      ? 'bg-green-100 text-green-800' 
-                      : booking.status === 'pending'
+                  <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${booking.status === 'confirmed'
+                    ? 'bg-green-100 text-green-800'
+                    : booking.status === 'pending'
                       ? 'bg-yellow-100 text-yellow-800'
                       : 'bg-red-100 text-red-800'
-                  }`}>
+                    }`}>
                     {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                   </span>
                 </div>
               </div>
-              
+
               <div className="bg-gray-50 px-6 py-3">
                 <button
-                  onClick={() => navigate(`/bookings/${booking._id}`)}
+                  onClick={() => navigate(`/bookings/${booking.id}`)}
                   className="text-blue-600 hover:text-blue-800 font-medium"
                 >
                   View Details

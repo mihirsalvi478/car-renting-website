@@ -1,5 +1,5 @@
 interface Package {
-  _id: string;
+  id: string;
   name: string;
   price: number;
   description: string;
@@ -14,15 +14,15 @@ interface Package {
 
 // Define Car interface with correct properties
 interface Car {
-  _id: string;
+  id: string;
   name: string;
   type: "economy" | "premium" | "luxury";
   price: number;
   description: string;
   availability: boolean;
   image: string;
-  category?: string; 
-  seats?: string; 
-  transmission?: string; 
-  fuel?: string; 
+  category?: string;
+  seats?: string;
+  transmission?: string;
+  fuel?: string;
 }

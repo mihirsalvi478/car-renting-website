@@ -40,9 +40,10 @@ export const getAllBookings = async (req: Request, res: Response) => {
           select: { name: true, email: true },
         },
         car: {
-          select: { name: true, price: true },
+          select: { name: true, price: true, image: true },
         },
       },
+      orderBy: { createdAt: 'desc' },
     });
     res.status(200).json(bookings);
   } catch (error: any) {

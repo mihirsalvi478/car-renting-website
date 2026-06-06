@@ -24,13 +24,20 @@ enum BookingStatus {
   cancelled
 }
 
+enum Role {
+  user
+  admin
+}
+
 model User {
   id        String     @id @default(uuid())
   name      String
   email     String     @unique
   password  String
+  role      Role       @default(user)
   cart      CartItem[]
   bookings  Booking[]
+  reviews   Review[]
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 
@@ -57,6 +64,7 @@ model Car {
   availability Boolean   @default(true)
   image        String?
   bookings     Booking[]
+  reviews      Review[]
 
   @@map("cars")
 }
@@ -87,4 +95,20 @@ model Booking {
   updatedAt  DateTime      @updatedAt
 
   @@map("bookings")
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  rating    Int      // 1 to 5
+  comment   String   @db.Text
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  carId     String
+  car       Car      @relation(fields: [carId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Ensure a user can only review a specific car once
+  @@unique([userId, carId])
+  @@map("reviews")
 }

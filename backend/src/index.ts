@@ -7,6 +7,7 @@ import carRoutes from "./routes/car.route";
 import packageRoutes from "./routes/packages.route";
 import contactRoutes from "./routes/contact.route";
 import bookingRoutes from "./routes/booking.routes";
+import adminRoutes from "./routes/admin.routes";
 import prisma from "./db/db";
 
 dotenv.config();
@@ -23,6 +24,8 @@ app.use("/cars", carRoutes);
 app.use("/packages", packageRoutes);
 app.use("/contact", contactRoutes);
 app.use("/bookings", bookingRoutes);
+app.use("/reviews", require("./routes/review.route").default);
+app.use("/admin", adminRoutes);
 
 const PORT = process.env.PORT || 3001;
 

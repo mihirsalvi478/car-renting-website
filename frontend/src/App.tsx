@@ -1,5 +1,4 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import User from "./pages/OrdersPage";
 import Home from "./pages/Home";
 import CarsPages from "./pages/Cars.pages";
 import Layout from "./components/Layout";
@@ -13,6 +12,10 @@ import AuthLayout from "./components/AuthLayout";
 import Contact from "./components/Contacts";
 import OrdersPage from "./pages/OrdersPage";
 import BookingPage from "./pages/BookingPage";
+import BookingHistory from "./pages/BookingHistory";
+import ProfileDashboard from "./pages/ProfileDashboard";
+import PaymentPage from "./pages/PaymentPage";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
@@ -48,14 +51,6 @@ function App() {
           }
         />
         <Route
-          path="/user"
-          element={
-            <Layout>
-              <User />
-            </Layout>
-          }
-        />
-        <Route
           path="/cars"
           element={
             <Layout>
@@ -87,16 +82,57 @@ function App() {
             </Layout>
           }
         />
-        <Route path="/contact-us" element={<Contact />} />
-        <Route path="/booking-page" element={<OrdersPage />} />
-        <Route 
-          path="/bookings" 
+        <Route
+          path="/contact-us"
+          element={
+            <Layout>
+              <Contact />
+            </Layout>
+          }
+        />
+        <Route
+          path="/booking-page"
+          element={
+            <Layout>
+              <OrdersPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/bookings"
           element={
             <Layout>
               <BookingPage />
             </Layout>
-          } 
+          }
         />
+        <Route
+          path="/my-bookings"
+          element={
+            <Layout>
+              <BookingHistory />
+            </Layout>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Layout>
+              <ProfileDashboard />
+            </Layout>
+          }
+        />
+        <Route
+          path="/payment"
+          element={
+            <Layout>
+              <PaymentPage />
+            </Layout>
+          }
+        />
+
+        {/* Admin Routes (no Layout wrapper) */}
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>

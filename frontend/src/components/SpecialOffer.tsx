@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const offers = [
   {
@@ -6,11 +7,11 @@ const offers = [
     details: ["Free fuel for first 100 km", "Complimentary car cleaning"],
     code: "WEEKEND20",
     tag: "LIMITED TIME OFFER",
-    tagColor: "bg-gradient-to-r from-blue-400 to-blue-600",
+    tagColor: "bg-slate-800",
     badge: "Expires in 2 days",
-    badgeColor: "bg-red-500",
-    buttonColor: "bg-blue-500 hover:bg-blue-600",
-    glowColor: "shadow-blue-300",
+    badgeColor: "bg-slate-600",
+    buttonColor: "bg-slate-900 hover:bg-slate-800",
+    glowColor: "shadow-slate-200/50",
   },
   {
     title: "Diwali Package",
@@ -21,11 +22,11 @@ const offers = [
     ],
     code: "DIWALI30",
     tag: "FESTIVAL SPECIAL",
-    tagColor: "bg-gradient-to-r from-purple-400 to-purple-600",
+    tagColor: "bg-sky-900",
     badge: "New Offer",
-    badgeColor: "bg-green-500",
-    buttonColor: "bg-purple-500 hover:bg-purple-600",
-    glowColor: "shadow-purple-300",
+    badgeColor: "bg-sky-700",
+    buttonColor: "bg-sky-900 hover:bg-sky-800",
+    glowColor: "shadow-sky-100/50",
   },
   {
     title: "Monthly Package",
@@ -36,17 +37,19 @@ const offers = [
     ],
     code: "MONTHLY25",
     tag: "LONG TERM DEAL",
-    tagColor: "bg-gradient-to-r from-green-400 to-green-600",
+    tagColor: "bg-blue-950",
     badge: "Popular",
-    badgeColor: "bg-blue-500",
-    buttonColor: "bg-green-500 hover:bg-green-600",
-    glowColor: "shadow-green-300",
+    badgeColor: "bg-blue-800",
+    buttonColor: "bg-blue-950 hover:bg-blue-900",
+    glowColor: "shadow-blue-100/50",
   },
 ];
 
 export default function SpecialOffers() {
+  const navigate = useNavigate();
+
   return (
-    <section className="py-16 px-6 text-center bg-white text-gray-900">
+    <section className="py-16 px-6 text-center bg-white text-slate-900">
       {/* Title Section */}
       <motion.h2
         className="text-4xl font-extrabold"
@@ -57,7 +60,7 @@ export default function SpecialOffers() {
         🎉 Exclusive Special Offers 🎉
       </motion.h2>
       <motion.p
-        className="text-gray-500 mt-2"
+        className="text-slate-500 font-medium mt-3"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 0.5 }}
@@ -70,7 +73,7 @@ export default function SpecialOffers() {
         {offers.map((offer, index) => (
           <motion.div
             key={offer.code}
-            className={`relative bg-white bg-opacity-90 backdrop-blur-xl border border-gray-200 rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl ${offer.glowColor}`}
+            className={`relative bg-white bg-opacity-90 backdrop-blur-xl border border-slate-100 rounded-2xl shadow-xl p-6 transition-all duration-300 hover:shadow-2xl ${offer.glowColor}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -92,7 +95,7 @@ export default function SpecialOffers() {
             <h3 className="font-semibold mt-4 text-2xl">{offer.title}</h3>
 
             {/* Offer Details */}
-            <ul className="text-gray-700 text-sm mt-4 space-y-2">
+            <ul className="text-slate-600 text-sm mt-4 space-y-2">
               {offer.details.map((detail, idx) => (
                 <li key={idx} className="flex items-center">
                   ✅ {detail}
@@ -102,11 +105,11 @@ export default function SpecialOffers() {
 
             {/* Promo Code */}
             <motion.div
-              className="mt-6 bg-gray-100 p-3 rounded-lg text-sm shadow-md"
+              className="mt-6 bg-slate-50 p-3 rounded-xl border border-slate-100 shadow-sm"
               whileHover={{ scale: 1.05 }}
             >
-              <p className="text-gray-500">Use Code</p>
-              <p className="font-bold text-lg text-blue-500 tracking-wider">
+              <p className="text-slate-500 font-medium">Use Code</p>
+              <p className="font-extrabold text-lg text-slate-900 tracking-wider">
                 {offer.code}
               </p>
             </motion.div>
@@ -116,6 +119,7 @@ export default function SpecialOffers() {
               className={`w-full mt-6 py-3 rounded-lg text-white transition ${offer.buttonColor} shadow-md hover:shadow-lg`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => navigate("/cars")}
             >
               🚗 Book Now
             </motion.button>

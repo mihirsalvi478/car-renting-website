@@ -1,7 +1,8 @@
 import "dotenv/config";
 import { PrismaClient } from "../src/generated/prisma/client";
-import { CarType } from "../src/generated/prisma/enums";
+import { CarType, Role } from "../src/generated/prisma/enums";
 import { PrismaPg } from "@prisma/adapter-pg";
+import bcrypt from "bcryptjs";
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
@@ -73,6 +74,18 @@ async function main() {
     await prisma.package.create({ data: pkg });
   }
   console.log(`Seeded ${packagesData.length} packages`);
+
+  // Seed admin user
+  const adminPassword = await bcrypt.hash("admin123456", 10);
+  await prisma.user.create({
+    data: {
+      name: "Admin",
+      email: "admin@carrent.com",
+      password: adminPassword,
+      role: Role.admin,
+    },
+  });
+  console.log("Seeded admin user (admin@carrent.com / admin123456)");
 
   console.log("Seeding complete!");
 }

@@ -52,9 +52,9 @@ export default function PackagesPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {packages.map((pack) => (
           <motion.div
-            key={pack._id} // ✅ Fixed unique key warning
+            key={pack.id} // ✅ Fixed unique key warning
             className="bg-white shadow-lg p-5 rounded-xl hover:shadow-2xl transition-shadow duration-300 hover:cursor-pointer"
-            onClick={() => navigate(`/packages/${pack._id}`)}
+            onClick={() => navigate(`/packages/${pack.id}`)}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
@@ -95,9 +95,8 @@ export default function PackagesPage() {
             )}
 
             <motion.p
-              className={`mt-4 text-lg font-medium ${
-                pack.availability ? "text-green-600" : "text-red-600"
-              }`}
+              className={`mt-4 text-lg font-medium ${pack.availability ? "text-green-600" : "text-red-600"
+                }`}
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
@@ -111,7 +110,7 @@ export default function PackagesPage() {
                 whileTap={{ scale: 0.95 }}
                 className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-2 mt-4 rounded-lg w-full font-semibold tracking-wide shadow-md hover:from-blue-600 hover:to-purple-600 transition-all hover:cursor-pointer"
                 onClick={(e) => {
-                  navigate("/book");
+                  navigate("/bookings");
                   e.stopPropagation(); // Prevent parent div click event
                 }}
               >

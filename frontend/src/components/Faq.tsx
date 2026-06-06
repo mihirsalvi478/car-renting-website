@@ -33,9 +33,9 @@ const faqs = [
 
 export default function Faq() {
   return (
-    <section className="py-12 px-6 text-center">
-      <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
-      <p className="text-gray-500">
+    <section className="py-16 px-6 text-center bg-slate-50">
+      <h2 className="text-4xl font-extrabold text-slate-900 tracking-tight">Frequently Asked Questions</h2>
+      <p className="text-slate-500 font-medium text-lg mt-3 mb-10">
         Find answers to common questions about our car rental and tour packages
       </p>
 
@@ -43,24 +43,24 @@ export default function Faq() {
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className="border rounded-lg shadow-lg p-4 bg-white text-left"
+            className="border border-slate-100 rounded-2xl shadow-xl shadow-slate-200/50 p-6 bg-white text-left transition-all hover:shadow-2xl hover:shadow-slate-200"
           >
-            <h3 className="font-semibold text-lg">❓ {faq.question}</h3>
-            <p className="text-gray-500 text-sm mt-2">{faq.answer}</p>
+            <h3 className="font-bold text-slate-900 text-lg">❓ {faq.question}</h3>
+            <p className="text-slate-500 text-sm mt-3 leading-relaxed">{faq.answer}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-8 text-center">
-        <h3 className="text-lg font-semibold">Still have questions?</h3>
-        <p className="text-gray-500">
+      <div className="mt-16 text-center">
+        <h3 className="text-2xl font-bold text-slate-900">Still have questions?</h3>
+        <p className="text-slate-500 font-medium mt-2">
           Our customer support team is here to help
         </p>
-        <div className="flex justify-center gap-4 mt-4">
-          <button className="px-6 py-2 bg-blue-600 text-white rounded-full">
+        <div className="flex justify-center gap-4 mt-6">
+          <button className="px-8 py-3 font-bold bg-slate-900 text-white rounded-full shadow-md hover:bg-slate-800 transition-all">
             📞 Contact Support
           </button>
-          <button className="px-6 py-2 bg-gray-300 text-black rounded-full">
+          <button className="px-8 py-3 font-bold bg-slate-200 text-slate-800 hover:bg-slate-300 rounded-full transition-all">
             📧 Email Us
           </button>
         </div>

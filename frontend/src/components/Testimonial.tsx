@@ -36,51 +36,51 @@ const stats = [
 
 export default function Testimonial() {
   return (
-    <section className="py-12 px-6 text-center">
-      <h2 className="text-2xl font-bold">What Our Customers Say</h2>
-      <p className="text-gray-500">
+    <section className="py-16 px-6 text-center bg-slate-50">
+      <h2 className="text-4xl font-extrabold text-slate-900 tracking-tight">What Our Customers Say</h2>
+      <p className="text-slate-500 font-medium text-lg mt-3">
         Real experiences from our satisfied customers
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
         {reviews.map((review, index) => (
           <div
             key={index}
-            className="border rounded-lg shadow-lg p-4 bg-white text-left"
+            className="border border-slate-100 rounded-2xl shadow-lg shadow-slate-200/50 p-6 bg-white text-left transition-all hover:shadow-xl"
           >
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gray-200 rounded-full"></div>
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-slate-200 rounded-full flex-shrink-0"></div>
               <div>
-                <h3 className="font-semibold">{review.name}</h3>
-                <p className="text-gray-500 text-sm">{review.location}</p>
+                <h3 className="font-bold text-slate-900 text-lg">{review.name}</h3>
+                <p className="text-slate-500 text-sm font-medium">{review.location}</p>
               </div>
             </div>
-            <div className="flex mt-2 text-yellow-500">
+            <div className="flex mt-4 text-yellow-400 text-lg mb-3">
               {[...Array(review.rating)].map((_, i) => (
                 <FaStar key={i} />
               ))}
             </div>
-            <p className="text-gray-500 text-sm italic mt-2">
+            <p className="text-slate-600 italic leading-relaxed">
               "{review.review}"
             </p>
-            <p className="text-gray-400 text-xs mt-2">{review.time}</p>
+            <p className="text-slate-400 font-medium text-xs mt-4 uppercase tracking-wider">{review.time}</p>
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12 bg-gray-100 p-6 rounded-lg">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-16 bg-white border border-slate-100 shadow-md p-8 rounded-2xl">
         {stats.map((stat, index) => (
           <div key={index} className="text-center">
-            <p className="text-blue-600 text-xl font-bold">{stat.value}</p>
-            <p className="text-gray-500 text-sm">{stat.label}</p>
+            <p className="text-slate-900 text-4xl font-extrabold">{stat.value}</p>
+            <p className="text-slate-500 font-medium text-sm mt-2">{stat.label}</p>
           </div>
         ))}
       </div>
 
-      <p className="text-gray-500 text-sm mt-6">
+      <p className="text-slate-500 font-medium mt-10 text-lg">
         Join thousands of satisfied customers who trust our service
       </p>
-      <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-full">
+      <button className="mt-6 px-8 py-3 bg-slate-900 text-white font-bold rounded-full shadow-md hover:bg-slate-800 transition-all hover:shadow-lg">
         Book Your Journey Now →
       </button>
     </section>
