@@ -104,7 +104,7 @@ export default function BookingPage() {
         return;
       }
 
-      const response = await axios.post(
+      await axios.post(
         `${BACKEND_URL}/bookings`,
         {
           userId: userId,
